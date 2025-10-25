@@ -45,19 +45,19 @@ const Navbar = () => {
           <div className="hidden md:flex md:items-center md:space-x-8">
             <Link
               to="/"
-              className="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-md font-bold"
             >
               Home
             </Link>
             <Link
               to="/recipes"
-              className="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-md font-bold"
             >
               Get Recipes
             </Link>
             <Link
               to="/about"
-              className="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-md font-bold"
             >
               About
             </Link>
@@ -68,7 +68,7 @@ const Navbar = () => {
               <div className="ml-4 flex items-center space-x-4">
                 <Link
                   to="/profile"
-                  className="flex items-center text-gray-600 hover:text-indigo-600 rounded-md text-sm font-medium"
+                  className="flex items-center text-amber-600 hover:text-amber-700 rounded-md text-md font-semibold"
                 >
                   <span className="mr-2">
                     Hi, {user.username.toUpperCase()}
@@ -83,7 +83,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/auth"
-                className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+                className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-md font-semibold rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
               >
                 Login
               </Link>
