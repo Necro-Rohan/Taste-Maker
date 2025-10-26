@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useSearch } from "../context/searchContext.jsx";
+import Footer from './Footer.jsx'
 import {
   Search,
   Lightbulb,
@@ -278,7 +279,8 @@ const HomePage = () => {
             </button>
           </form>
         </div>
-      </section>      
+      </section>
+      <Footer />
     </div> 
   );
 };
