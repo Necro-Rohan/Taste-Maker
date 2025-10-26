@@ -29,11 +29,11 @@ function App() {
       {isSafari && (
         <div
           style={{
-            position: "sticky", // Or 'fixed' if you want it always on screen
-            top: "4rem", // Adjust based on your Navbar height (h-16 is 4rem)
+            position: "sticky", 
+            top: "4rem", 
             left: 0,
             right: 0,
-            zIndex: 100, // Ensure it's above other content but below modals if any
+            zIndex: 100, 
           }}
           className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 text-center shadow-md"
           role="alert"
@@ -46,7 +46,7 @@ function App() {
           </p>
         </div>
       )}
-      <main className="flex-grow">
+      <main className="grow">
       <Routes>
         <Route path="/auth" element={<AuthCard />} />
         <Route path="/recipes" element={<IngredientSearch />} />
