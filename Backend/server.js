@@ -17,9 +17,21 @@ await connectDB();
 
 app.use(cookieParser());
 
-const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";        //let's make it development ready
+const frontendURLs = [
+        process.env.FRONTEND_URL,
+        "http://localhost:5173",
+      ].filter((value) => {
+        return Boolean(value);
+      });      
+
 app.use(cors({
-  origin: frontendURL,
+  origin: function (origin, callback) {
+    if (!origin || frontendURLs.includes(origin)) {
+      return callback(null, true)
+    }else {
+      return callback(null, false);
+    }
+  },
   credentials: true,
 }));
 app.use(express.json());

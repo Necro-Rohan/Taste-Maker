@@ -148,7 +148,8 @@ async function fetchFromGenAI(ingredients, cuisine) {
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash-001",                        // finally got a model that works
+      model: "gemini-2.5-flash",
+      // model: "gemini-1.5-flash-001", // finally got a model that works
       contents: prompt,
     });
 
