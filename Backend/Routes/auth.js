@@ -1,5 +1,5 @@
 import express from 'express'
-import User from '../dbmodels/users.model.js'
+import User from '../models/users.model.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 

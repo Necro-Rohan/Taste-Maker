@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import {Schema, model} from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   username: {
     type: String,
     required: [true, "Username is required"],
@@ -20,12 +20,16 @@ const userSchema = new mongoose.Schema({
     required: [true, "Password is required"],
     trim:true
   },
+  myFridge: {
+    type: [String],
+    default: []
+  },
   preferences: {
     type: [String],
     default: []
   },
   savedRecipes: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: [Schema.Types.ObjectId],
     ref: "Recipe",
     default: []
   },
@@ -35,6 +39,6 @@ const userSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-const User = mongoose.model("User", userSchema);
+const User = model("User", userSchema);
 
 export default User;

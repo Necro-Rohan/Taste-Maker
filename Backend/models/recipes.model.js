@@ -1,15 +1,15 @@
-import mongoose from 'mongoose';
+import {Schema, model} from 'mongoose';
 
-const recipeSchema = new mongoose.Schema(
+const recipeSchema = new Schema(
   {
     title: {
       type: String,
-      required: [true, "Recipe title is required"],
+      required: [true, "Title is required for every recipe"],
       trim: true,
+      index: true
     },
     id: {
       type: String,
-      required: [true, "Spoonacular ID is required"],
       unique: true,
     },
     ingredients: {
@@ -36,7 +36,7 @@ const recipeSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    image: {
+    recipeImage: {
       type: String,
     },
     generatedByAI: {
@@ -61,6 +61,9 @@ const recipeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Recipe = mongoose.model('Recipe', recipeSchema);
+recipeSchema.index({ title: "text", ingredients: "text" });
+
+
+const Recipe = model('Recipe', recipeSchema);
 
 export default Recipe;

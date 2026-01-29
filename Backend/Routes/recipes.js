@@ -1,6 +1,6 @@
 import express from "express";
 import axios from "axios";
-import Recipe from "../dbmodels/recipes.model.js";
+import Recipe from "../models/recipes.model.js";
 import cron from "node-cron";
 import { GoogleGenAI } from "@google/genai"; // check for working of Ai , let research about it in npm 
 
