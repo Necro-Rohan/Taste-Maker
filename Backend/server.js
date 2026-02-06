@@ -4,7 +4,7 @@ import cors from 'cors';
 import connectDB from './db.js';
 import validateToken from './middlewares/validate.js';
 import cookieParser from 'cookie-parser';
-import authRoutes from './Routes/auth.js'
+import authRoutes from './Routes/auth.route.js'
 import recipeRoutes from './Routes/recipes.js'
 import profileRoutes from './Routes/profile.js'
 
