@@ -23,7 +23,7 @@ const AI_STOCK_IMAGES = [
   "https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg",
 ];
 
-const CACHE_TIME = 7 * 24 * 60 * 60 * 1000;
+const CACHE_TIME = 90 * 24 * 60 * 60 * 1000;
 
 const shouldFallbackOnError = (error) => {
   if (error.response) {
