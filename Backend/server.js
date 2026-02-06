@@ -6,7 +6,8 @@ import validateToken from './middlewares/validate.js';
 import cookieParser from 'cookie-parser';
 import authRoutes from './Routes/auth.route.js'
 import recipeRoutes from './Routes/recipes.js'
-import profileRoutes from './Routes/profile.js'
+import profileRoutes from './Routes/profile.route.js'
+import checkActiveUser from './middlewares/activeUser.js';
 
 const app = express();
 dotenv.config();
@@ -37,8 +38,8 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/auth', authRoutes);
-app.use('/recipes', validateToken, recipeRoutes);
-app.use("/profile", validateToken, profileRoutes);
+app.use('/recipes', validateToken, checkActiveUser, recipeRoutes);
+app.use("/profile", validateToken, checkActiveUser, profileRoutes);
 
 
 app.listen(PORT, () => {

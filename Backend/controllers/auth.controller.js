@@ -60,7 +60,11 @@ export const login = async (req, res) => {
     }
 
     if (!user.isActive) {
-      return res.status(403).json({message: "Your Account is deactivated by you do you want to restore it."})
+      return res.status(403).json({
+        code: "ACCOUNT_DISABLED",
+        message: "Your account was disabled by you. Do you want to restore it?",
+        restoreRequired: true,
+      });
     }
 
     const token = jwt.sign(
@@ -105,6 +109,30 @@ export const login = async (req, res) => {
 }
 
 
+export const restoreAccount = async (req, res) => {
+  try {
+    const { identifier } = req.body;
+
+    const user = await User.findOne({
+      $or: [{ email: identifier.toLowerCase() }, { username: identifier }],
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.isActive = true;
+    await user.save();
+
+    return res.json({
+      message: "Account restored successfully. Please login again.",
+    });
+  } catch (error) {
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+
 export const refresh = (req, res) => {
   const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) {
@@ -112,9 +140,10 @@ export const refresh = (req, res) => {
   }
   jwt.verify(refreshToken, process.env.REFRESH_SECRET, (err, decoded) => {            // /refresh route to get refresh token
     if (err) {
-      return res
-        .status(403)
-        .json({ message: "Invalid or expired refresh token" });
+      return res.status(403).json({
+        code: "REFRESH_TOKEN_EXPIRED",
+        message: "Invalid or expired refresh token"
+      });
     }
     const newToken = jwt.sign(
       { id: decoded.id, username: decoded.username },
